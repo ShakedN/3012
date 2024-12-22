@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,16 +37,18 @@ public class fragmenthree extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    public static fragmenthree newInstance(String email) {
+    private String getArgEmail;
+
+
+
+
+
+
+
+    public static fragmenthree newInstance(String param1, String param2,String email) {
         fragmenthree fragment = new fragmenthree();
         Bundle args = new Bundle();
-        args.putString(ARG_EMAIL, email); // Put the email in the Bundle
-        fragment.setArguments(args);      // Attach the Bundle to the fragment
-        return fragment;
-    }
-    public static fragmenthree newInstance(String param1, String param2) {
-        fragmenthree fragment = new fragmenthree();
-        Bundle args = new Bundle();
+         args.putString(ARG_EMAIL, email);
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -58,17 +61,19 @@ public class fragmenthree extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragmentthree, container, false);
-
-        // Initialize UI components
+        String email = getArguments().getString("email");
+                     String usernamePart = email.split("@")[0];
+                // You can now use the email in your fragment logic// Initialize UI components
+     //   Log.d("FragmentThree", "Email passed: " + email);
         recyclerView = view.findViewById(R.id.recyclerViewResult);
         searchView = view.findViewById(R.id.searchView);
         TextView clientName = view.findViewById(R.id.clientName);
-        clientName.setText(getArguments().getString(ARG_PARAM1));
+        clientName.setText("Welcome " + usernamePart);
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
+            getArgEmail= getArguments().getString(ARG_EMAIL);
         }
         // Prepare dataset
         dataset = new ArrayList<>();

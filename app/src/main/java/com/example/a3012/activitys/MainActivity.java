@@ -50,22 +50,28 @@ public class MainActivity extends AppCompatActivity {
 
         String email = ((EditText)findViewById(R.id.inputUserName)).getText().toString();
         String password = ((EditText)findViewById(R.id.inputPass)).getText().toString();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                               Toast.makeText(MainActivity.this,"login ok",Toast.LENGTH_LONG).show();
-                               Navigation.findNavController(view).navigate(R.id.action_fragmentOne_to_fragmentthree);
+                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+
+                            // Create a Bundle to pass the email
+                            Bundle bundle = new Bundle();
+                            bundle.putString("email", email);  // Store the email in the Bundle
+
+                            // Navigate and pass the Bundle to fragmentthree
+                            Navigation.findNavController(view).navigate(R.id.action_fragmentOne_to_fragmentthree, bundle);
 
                         } else {
-                             Toast.makeText(MainActivity.this,"login fail",Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-
     }
+
     public void reg(View view) {
         String email = ((EditText)findViewById(R.id.email)).getText().toString();
         String password = ((EditText)findViewById(R.id.password1)).getText().toString();

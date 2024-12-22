@@ -3,6 +3,17 @@ package moudles;
 public class GroceryItem {
     String name;
     double price;
+    int amount;
+    int image;
+    int id;
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
 
     public String getName() {
         return name;
@@ -36,15 +47,15 @@ public class GroceryItem {
         this.id = id;
     }
 
-    public GroceryItem(String name, double price, int image, int id) {
+    public GroceryItem(String name, double price, int image, int id,int amount) {
         this.name = name;
         this.price = price;
         this.image = image;
         this.id = id;
+        this.amount=amount;
     }
 
-    int image;
-    int id;
+
 
 
 
