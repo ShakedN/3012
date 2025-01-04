@@ -9,7 +9,7 @@
     <color name="your_hint_text_color">#808080</color>
     <color name="primary_dark">#0057B4</color>
     <color name="accent">#D81B60</color>
-
+    <color name="button_background">#6DA8D5</color>
 
 
     </resources>

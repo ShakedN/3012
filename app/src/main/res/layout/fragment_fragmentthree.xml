@@ -16,22 +16,23 @@
         android:layout_marginBottom="16dp">
 
         <ImageView
-            android:id="@+id/cartIcon"
+            android:id="@+id/cartIcon1"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:src="@drawable/cart"
             android:contentDescription="Shopping Cart"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+       />
 
         <ImageView
             android:id="@+id/searchIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/search_pic"
-            android:contentDescription="Search Icon"
+            android:layout_width="20dp"
+            android:layout_height="17dp"
+            android:layout_marginEnd="10dp"
             android:clickable="true"
+            android:contentDescription="Search Icon"
             android:focusable="true"
-            android:layout_marginEnd="10dp"/>
+            android:src="@drawable/search_pic" />
 
         <TextView
             android:id="@+id/clientName"
@@ -72,5 +73,5 @@
         android:id="@+id/recyclerViewResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp" />
 </LinearLayout>

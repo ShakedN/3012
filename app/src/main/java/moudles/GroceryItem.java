@@ -1,5 +1,7 @@
 package moudles;
 
+import com.google.firebase.database.DataSnapshot;
+
 public class GroceryItem {
     String name;
     double price;
@@ -54,8 +56,15 @@ public class GroceryItem {
         this.id = id;
         this.amount=amount;
     }
-
-
+    public GroceryItem() {}
+    public static GroceryItem fromDataSnapshot(DataSnapshot snapshot) {
+        GroceryItem item = new GroceryItem();
+        item.setAmount(snapshot.child("amount").getValue(Integer.class));
+        item.setId(snapshot.child("id").getValue(Integer.class));
+        item.setName(snapshot.child("name").getValue(String.class));
+        item.setPrice(snapshot.child("price").getValue(Double.class));
+        return item;
+    }
 
 
 

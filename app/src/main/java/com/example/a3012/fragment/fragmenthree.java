@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.SearchView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.a3012.CustomeAdapter;
+import com.example.a3012.CustomAdapter;
 import com.example.a3012.R;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class fragmenthree extends Fragment {
 
     private ArrayList<GroceryItem> dataset;
     private RecyclerView recyclerView;
-    private CustomeAdapter adapter;
+    private CustomAdapter adapter;
     private SearchView searchView;
 
     public fragmenthree() {
@@ -48,7 +49,7 @@ public class fragmenthree extends Fragment {
     public static fragmenthree newInstance(String param1, String param2,String email) {
         fragmenthree fragment = new fragmenthree();
         Bundle args = new Bundle();
-         args.putString(ARG_EMAIL, email);
+        args.putString(ARG_EMAIL, email);
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -62,9 +63,9 @@ public class fragmenthree extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragmentthree, container, false);
         String email = getArguments().getString("email");
-                     String usernamePart = email.split("@")[0];
-                // You can now use the email in your fragment logic// Initialize UI components
-     //   Log.d("FragmentThree", "Email passed: " + email);
+        String usernamePart = email.split("@")[0];
+        // You can now use the email in your fragment logic// Initialize UI components
+        //   Log.d("FragmentThree", "Email passed: " + email);
         recyclerView = view.findViewById(R.id.recyclerViewResult);
         searchView = view.findViewById(R.id.searchView);
         TextView clientName = view.findViewById(R.id.clientName);
@@ -82,13 +83,14 @@ public class fragmenthree extends Fragment {
                     Data.nameArray[i],
                     Data.descriptionArray[i],
                     Data.drawableArray[i],
-                    Data.id_[i]
+                    Data.id_[i],
+                    Data.amount[i]
             ));
         }
 
         // Set up RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new CustomeAdapter(dataset);
+        adapter = new CustomAdapter(dataset);
         recyclerView.setAdapter(adapter);
 
         // Set up SearchView
@@ -115,7 +117,16 @@ public class fragmenthree extends Fragment {
             searchView.setVisibility(View.VISIBLE);
             searchView.requestFocus();
         });
+        ImageView cartIcon = view.findViewById(R.id.cartIcon1);
+        view.findViewById(R.id.cartIcon1);
+        cartIcon.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("email", usernamePart);
+            Navigation.findNavController(view).navigate(R.id.action_fragmenthree_to_fragmentFour, bundle);
+        });
 
         return view;
     }
+
+
 }

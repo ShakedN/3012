@@ -2,6 +2,7 @@ package com.example.a3012.activitys;
 
 import static java.security.AccessController.getContext;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,16 +23,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import moudles.GroceryItem;
 import moudles.Students;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
+
+
+
     public void reg(View view) {
         String email = ((EditText)findViewById(R.id.email)).getText().toString();
         String password = ((EditText)findViewById(R.id.password1)).getText().toString();
@@ -96,14 +104,40 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public  void addDATA(){
-        String phone=((EditText)findViewById(R.id.phone)).getText().toString();
-        String email = ((EditText)findViewById(R.id.email)).getText().toString();
+
+    public void addDATA() {
+        // Get the phone and email from input fields
+        String phone = ((EditText) findViewById(R.id.phone)).getText().toString();
+        String email = ((EditText) findViewById(R.id.email)).getText().toString();
+
+        // Get instance of Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("user").child(phone);
-        Students students = new Students(email,phone);
-        myRef.setValue(students);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        // Get the current user's UID
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();  // Use UID instead of phone number as key
+
+            // Reference to the user's data in the database
+            DatabaseReference userRef = database.getReference("users").child(uid);
+
+            // Create a Students object with the email and phone number
+            Students students = new Students(email, phone);
+
+            // Store the user data under the user's UID
+            userRef.setValue(students)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "User data added successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to add user data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
+
+
     public void getStudent(String phone){
         // Read from the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();

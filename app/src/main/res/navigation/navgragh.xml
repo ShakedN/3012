@@ -33,5 +33,14 @@
         android:id="@+id/fragmenthree"
         android:name="com.example.a3012.fragment.fragmenthree"
         android:label="fragment_fragmentthree"
-        tools:layout="@layout/fragment_fragmentthree" />
+        tools:layout="@layout/fragment_fragmentthree" >
+    <action
+        android:id="@+id/action_fragmenthree_to_fragmentFour"
+        app:destination="@id/fragmentFour" />
+</fragment>
+    <fragment
+        android:id="@+id/fragmentFour"
+        android:name="com.example.a3012.fragment.fragmentFour"
+        android:label="fragment_four"
+        tools:layout="@layout/fragment_four" />
 </navigation>

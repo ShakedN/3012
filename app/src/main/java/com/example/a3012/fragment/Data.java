@@ -4,7 +4,7 @@ import com.example.a3012.R;
 
 public class Data {
     static String[] nameArray = {"Bread", "Cola", "Cookie", "Cornflakes", "Cucumber", "Eggs", "Flour", "Klik", "Milk", "Nutella", "Orange", "Rice", "Tomato"};
-    static Integer[] amount = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0};
+    static Integer[] amount = {1, 1, 1, 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1};
     static double[] descriptionArray = {
             7.9, // Bread
            12, // Cola

@@ -14,15 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#A84A45">
 
         <!-- Image View for Grocery Item -->
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
+            android:layout_width="26dp"
+            android:layout_height="105dp"
             android:layout_marginEnd="10dp"
+            android:layout_weight="1"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -38,30 +40,67 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Grocery Name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
                 android:ellipsize="end"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="Grocery Name"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <!-- Grocery Price -->
+
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price: $0.00"
-                android:textSize="16sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
-        <!-- Add to Basket Button -->
-        <Button
-            android:id="@+id/addToBasketButton"
+        <!-- Basket Controls -->
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:textColor="@android:color/white" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Remove from Basket Button -->
+
+            <!-- Product Amount -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Remove from Basket Button -->
+
+                <!-- Product Amount -->
+
+                <Button
+                    android:id="@+id/addToCartButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Add"
+                    android:backgroundTint="@color/primary"/>
+
+                <!-- Add to Basket Button -->
+            </LinearLayout>
+
+            <!-- Add to Basket Button -->
+        </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

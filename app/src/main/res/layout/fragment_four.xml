@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".fragment.fragmentFour"
+ >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        >
+
+
+
+        <TextView
+            android:id="@+id/clientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome, Client!"
+            android:textSize="22sp"
+            android:textColor="#1A1A1A"
+            android:gravity="start"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="78dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/shefa" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="16dp" />
+
+
+
+    <!-- TextView for displaying the total price -->
+    <TextView
+        android:id="@+id/textViewTotalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Price: $0.0"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView for displaying data -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>
